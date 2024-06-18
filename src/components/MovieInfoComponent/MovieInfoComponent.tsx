@@ -13,10 +13,13 @@ export const MovieInfoComponent: FC = () => {
 
     return (
         <div className={styles.movie_component}>
+
             <div className={styles.movie_box}>
+
                 <div className={styles.movie_poster}>
                     <PosterPreviewComponent key={movie.id} path={movie.poster_path}/>
                 </div>
+
                 <div className={styles.movie_description}>
                     <div className={styles.title}>
                         {movie.title}
@@ -31,9 +34,12 @@ export const MovieInfoComponent: FC = () => {
                         {movie.overview}
                     </div>
                 </div>
+
             </div>
+
             <div className={styles.actors_box}>
             </div>
+
             <div className={styles.trailer_box}>
             </div>
         </div>

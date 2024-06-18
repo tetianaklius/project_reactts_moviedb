@@ -1,0 +1,9 @@
+.footer_box {
+    height:15vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: rgba(70, 42, 104, 0.78);
+    /*margin-bottom: 0;*/
+}

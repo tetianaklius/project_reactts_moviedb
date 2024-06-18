@@ -1,4 +1,5 @@
 .header_common {
+    height: 8vh;
     background: rgba(70, 42, 104, 0.45);
     display: flex;
     flex-direction: row;
