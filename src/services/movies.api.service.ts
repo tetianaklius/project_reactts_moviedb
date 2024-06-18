@@ -1,7 +1,8 @@
 import axios from "axios";
 
 import {baseUrl, urls} from "../constants/urls";
-import {IMoviesPaginated} from "../models/IMovie/IMoviePaginated";
+import {IMoviesPaginated} from "../models/IMovie/IMoviesPaginated";
+import {IMovieDetailed} from "../models/IMovie/IMovieDetailed";
 
 const axiosInstance = axios.create({
     baseURL: baseUrl,
@@ -18,6 +19,10 @@ axiosInstance.interceptors.request.use(request => {
 export const moviesService = {
     getAll: async (page: string): Promise<IMoviesPaginated> => {
         const response = await axiosInstance.get<IMoviesPaginated>(urls.movies.all(+page));
+        return response.data;
+    },
+    getById: async (id: string): Promise<IMovieDetailed> => {
+        const response = await axiosInstance.get<IMovieDetailed>(urls.movies.byId(+id));
         return response.data;
     }
 }

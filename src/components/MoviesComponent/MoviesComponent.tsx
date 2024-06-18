@@ -5,12 +5,12 @@ import {MovieCardComponent} from "../MovieCardComponent/MovieCardComponent";
 import styles from "./MoviesComponent.module.css";
 
 const MoviesComponent: FC = () => {
-    const {moviesPag, isLoaded} = useAppSelector(state => state.moviesSlice)
+    const {moviesPag, isLoadedMovies} = useAppSelector(state => state.moviesSlice)
 
     return (
         <div className={styles.movies_cards}>
             {
-                isLoaded && moviesPag ?
+                isLoadedMovies && moviesPag ?
                     moviesPag.results.map(movie => <MovieCardComponent key={movie.id}
                                                                        movie={movie}/>)
                     : <h3>Loading...</h3>

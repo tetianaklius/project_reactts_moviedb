@@ -1,4 +1,5 @@
 .movie_component {
+    height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,8 +13,7 @@
 }
 
 .movie_poster {
-    width: 25%;
-    max-width: 25%;
+
 }
 
 .movie_description {

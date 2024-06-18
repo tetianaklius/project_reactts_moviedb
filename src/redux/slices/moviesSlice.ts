@@ -1,21 +1,23 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
-import {IMovie} from "../../models/IMovie/IMovie";
 import {moviesService} from "../../services/movies.api.service";
-import {IMoviesPaginated} from "../../models/IMovie/IMoviePaginated";
+import {IMoviesPaginated} from "../../models/IMovie/IMoviesPaginated";
+import {IMovieDetailed} from "../../models/IMovie/IMovieDetailed";
 
 
 type MoviesSliceType = {
     moviesPag: IMoviesPaginated | null,
-    movie: IMovie | null,
-    isLoaded: boolean
+    movieDetailed: IMovieDetailed | null,
+    isLoadedMovies: boolean,
+    isLoadedDetails: boolean
 }
 
 const moviesInitState: MoviesSliceType = {
     moviesPag: null,
-    movie: null,
-    isLoaded: false
+    movieDetailed: null,
+    isLoadedMovies: false,
+    isLoadedDetails: false
 }
 
 const loadMovies = createAsyncThunk(
@@ -31,12 +33,28 @@ const loadMovies = createAsyncThunk(
         }
     });
 
+const loadMovieDetails = createAsyncThunk(
+    "moviesSlice/loadMovieDetails",
+    async (id: string, thunkAPI) => {
+        try {
+            const movieDetailed = await moviesService.getById(id);
+            thunkAPI.dispatch(moviesActions.changeMoreDetailsStatus(true));
+            return thunkAPI.fulfillWithValue(movieDetailed);
+        } catch (e) {
+            const error = e as AxiosError;
+            return thunkAPI.rejectWithValue(error.response?.data);
+        }
+    });
+
 export const moviesSlice = createSlice({
         name: "moviesSlice",
         initialState: moviesInitState,
         reducers: {
             changeLoadStatus: (state, action: PayloadAction<boolean>) => {
-                state.isLoaded = action.payload;
+                state.isLoadedMovies = action.payload;
+            },
+            changeMoreDetailsStatus: (state, action: PayloadAction<boolean>) => {
+                state.isLoadedDetails = action.payload;
             }
         },
         extraReducers: builder =>
@@ -44,10 +62,21 @@ export const moviesSlice = createSlice({
                 .addCase(loadMovies.fulfilled, (state, action) => {
                     state.moviesPag = action.payload;
                 })
+                .addCase(loadMovies.rejected, (state, action) => {
+                    ///
+                })
+                .addCase(loadMovieDetails.fulfilled, (state, action) => {
+                    state.movieDetailed = action.payload;
+                })
+                .addCase(loadMovieDetails.rejected, (state, action) => {
+                    ///
+                })
+
     }
 )
 
 export const moviesActions = {
     ...moviesSlice.actions,
-    loadMovies
+    loadMovies,
+    loadMovieDetails
 }
