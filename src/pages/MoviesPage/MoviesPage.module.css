@@ -1,0 +1,7 @@
+.main {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    background: black;
+    color: white;
+}

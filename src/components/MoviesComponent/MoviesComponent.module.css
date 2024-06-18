@@ -1,0 +1,6 @@
+.movies_cards {
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
