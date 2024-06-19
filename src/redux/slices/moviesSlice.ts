@@ -2,22 +2,25 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
 import {moviesService} from "../../services/movies.api.service";
-import {IMoviesPaginated} from "../../models/IMovie/IMoviesPaginated";
-import {IMovieDetailed} from "../../models/IMovie/IMovieDetailed";
+import {IMoviesPaginated} from "../../models/Movies/IMoviesPaginated";
+import {IMovieDetailed} from "../../models/Movies/IMovieDetailed";
+import {IMovie} from "../../models/Movies/IMovie";
 
 
 type MoviesSliceType = {
     moviesPag: IMoviesPaginated | null,
     movieDetailed: IMovieDetailed | null,
+    moviesOfGenre: IMovie[],
     isLoadedMovies: boolean,
-    isLoadedDetails: boolean
+    // isLoadedDetails: boolean
 }
 
 const moviesInitState: MoviesSliceType = {
     moviesPag: null,
     movieDetailed: null,
+    moviesOfGenre: [],
     isLoadedMovies: false,
-    isLoadedDetails: false
+    // isLoadedDetails: false
 }
 
 const loadMovies = createAsyncThunk(
@@ -38,7 +41,7 @@ const loadMovieDetails = createAsyncThunk(
     async (id: string, thunkAPI) => {
         try {
             const movieDetailed = await moviesService.getById(id);
-            thunkAPI.dispatch(moviesActions.changeMoreDetailsStatus(true));
+            // thunkAPI.dispatch(moviesActions.changeMoreDetailsStatus(true));
             return thunkAPI.fulfillWithValue(movieDetailed);
         } catch (e) {
             const error = e as AxiosError;
@@ -50,11 +53,15 @@ export const moviesSlice = createSlice({
         name: "moviesSlice",
         initialState: moviesInitState,
         reducers: {
+            saveMoviesFilteredByGenre: (state, action: PayloadAction<IMovie[]>) => {
+                state.moviesOfGenre = action.payload;
+            },
+
             changeLoadStatus: (state, action: PayloadAction<boolean>) => {
                 state.isLoadedMovies = action.payload;
             },
             changeMoreDetailsStatus: (state, action: PayloadAction<boolean>) => {
-                state.isLoadedDetails = action.payload;
+                // state.isLoadedDetails = action.payload;
             }
         },
         extraReducers: builder =>

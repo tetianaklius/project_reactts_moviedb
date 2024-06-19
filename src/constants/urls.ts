@@ -5,5 +5,11 @@ export const urls = {
         all: (page: number): string => `/discover/movie?page=${page}`,
         byId: (id: number): string => `/movie/${id}`
     },
-    poster_base: "https://image.tmdb.org/t/p/w500/"
+    poster: {
+        base500: "https://image.tmdb.org/t/p/w500/"
+    },
+    genres: {
+        base: "/genre/movie/list"
+    }
+
 }

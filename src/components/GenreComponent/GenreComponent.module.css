@@ -1,0 +1,12 @@
+.genre_name {
+    color: white;
+}
+
+.genre_box {
+    width: 6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #282c34;
+    cursor: pointer;
+}

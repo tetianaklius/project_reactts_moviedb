@@ -5,10 +5,10 @@ import styles from "./MovieInfoComponent.module.css";
 import PosterPreviewComponent from "../PosterPreviewComponent/PosterPreviewComponent";
 import StarsRatingComponent from "../StarsRatingComponent/StarsRatingComponent";
 import GenreBadgeComponent from "../GenreBadgeComponent/GenreBadgeComponent";
-import {IMovie} from "../../models/IMovie/IMovie";
+import {IMovie} from "../../models/Movies/IMovie";
 import {useAppDispatch} from "../../redux/store";
 import {moviesActions} from "../../redux/slices/moviesSlice";
-import MoreMovieDetailsComponent from "../MoreMovieDetailsComponent";
+import MoreMovieDetailsComponent from "../MoreMovieDetailsComponent/MoreMovieDetailsComponent";
 
 export const MovieInfoComponent: FC = () => {
     const location = useLocation();

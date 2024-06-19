@@ -1,0 +1,5 @@
+.genres_container {
+    height: 7vh;
+    display: flex;
+    flex-direction: row;
+}

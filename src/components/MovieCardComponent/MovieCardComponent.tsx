@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {useNavigate} from "react-router-dom";
 
 import styles from "./MovieCardComponent.module.css";
-import {IMovie} from "../../models/IMovie/IMovie";
+import {IMovie} from "../../models/Movies/IMovie";
 import PosterPreviewComponent from "../PosterPreviewComponent/PosterPreviewComponent";
 import StarsRatingComponent from "../StarsRatingComponent/StarsRatingComponent";
 

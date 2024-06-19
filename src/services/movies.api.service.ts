@@ -1,8 +1,8 @@
 import axios from "axios";
 
 import {baseUrl, urls} from "../constants/urls";
-import {IMoviesPaginated} from "../models/IMovie/IMoviesPaginated";
-import {IMovieDetailed} from "../models/IMovie/IMovieDetailed";
+import {IMoviesPaginated} from "../models/Movies/IMoviesPaginated";
+import {IMovieDetailed} from "../models/Movies/IMovieDetailed";
 
 const axiosInstance = axios.create({
     baseURL: baseUrl,

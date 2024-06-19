@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-import {useAppSelector} from "../redux/store";
+import {useAppSelector} from "../../redux/store";
 
 const MoreMovieDetailsComponent: FC = () => {
     const {movieDetailed} = useAppSelector(state => state.moviesSlice);

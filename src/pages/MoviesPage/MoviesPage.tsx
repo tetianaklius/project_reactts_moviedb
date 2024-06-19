@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import {useParams} from "react-router-dom";
 
 import MoviesComponent from "../../components/MoviesComponent/MoviesComponent";
@@ -7,11 +7,11 @@ import {moviesActions} from "../../redux/slices/moviesSlice";
 import styles from "./MoviesPage.module.css";
 
 
-const MoviesPage = () => {
+const MoviesPage: FC = () => {
     const {page} = useParams();
     const dispatch = useAppDispatch();
 
-    useEffect(() => {
+    useEffect((): void => {
         if (page) {
             dispatch(moviesActions.loadMovies(page))
         } else {
