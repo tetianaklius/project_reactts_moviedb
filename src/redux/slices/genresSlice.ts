@@ -2,17 +2,17 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
 import {IGenres} from "../../models/Genres/IGenres";
-import {IGenre} from "../../models/Genres/IGenre";
 import {genresService} from "../../services/genres.api.service";
+import {IGenre} from "../../models/Genres/IGenre";
 
 type GenresSliceType = {
     genres: IGenres | null,
-    genre: IGenre | null,
+    currentGenre: IGenre | null,
 }
 
 const genresInitState: GenresSliceType = {
     genres: null,
-    genre: null
+    currentGenre: null
 }
 
 
@@ -31,7 +31,11 @@ const loadGenres = createAsyncThunk(
 export const genresSlice = createSlice({
         name: "genresSlice",
         initialState: genresInitState,
-        reducers: {},
+        reducers: {
+            changeGenreCurrent: (state, action) => {
+                state.currentGenre = action.payload;
+            }
+        },
         extraReducers: builder =>
             builder
                 .addCase(loadGenres.fulfilled, (state, action) => {
