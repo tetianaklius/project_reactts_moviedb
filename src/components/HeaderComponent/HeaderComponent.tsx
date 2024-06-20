@@ -10,9 +10,9 @@ const HeaderComponent = () => {
         <div className={styles.header_common}>
             <div className={styles.logo_box}>logo</div>
             <div className={styles.navbar}>
-                <div><NavLink to={"movies"}>movies</NavLink></div>
-                <div><NavLink to={"genres"}>genres</NavLink></div>
-                <div><NavLink to={"search"}>search</NavLink></div>
+                <div><NavLink to={"movies"} className={styles.navbar_text}>movies</NavLink></div>
+                <div><NavLink to={"genres"} className={styles.navbar_text}>genres</NavLink></div>
+                <div><NavLink to={"search"} className={styles.navbar_text}>search</NavLink></div>
             </div>
             <div className={styles.theme_toggle}>
                 <ThemeToggleComponent/>

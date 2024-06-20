@@ -1,9 +1,11 @@
 .header_common {
     height: 8vh;
-    background: rgba(70, 42, 104, 0.45);
+    min-height: 8vh;
+    background: linear-gradient(to right, #1f1738, rgba(0, 0, 0, 0.98));
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    color: white;
 }
 
 .logo_box {
@@ -21,6 +23,11 @@
     align-items: center;
 }
 
+.navbar_text {
+    color: white;
+    text-decoration: none;
+}
+
 .theme_toggle {
     width: 10%;
     display: flex;
@@ -31,4 +38,5 @@
     width: 10%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
