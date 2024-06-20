@@ -2,32 +2,30 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
 import {moviesService} from "../../services/movies.api.service";
+import {ISearchParams} from "../../models/Search/SearchParams";
 import {IMoviesPaginated} from "../../models/Movies/IMoviesPaginated";
-import {IMovieDetailed} from "../../models/Movies/IMovieDetailed";
-import {IMovie} from "../../models/Movies/IMovie";
 
 
-type MoviesSliceType = {
-    moviesPag: IMoviesPaginated | null,
-    movieDetailed: IMovieDetailed | null,
-    moviesOfGenre: IMovie[],
-    isLoadedMovies: boolean,
-    // isLoadedDetails: boolean
-}
-
-const moviesInitState: MoviesSliceType = {
-    moviesPag: null,
+const moviesInitState: IMoviesPaginated = {
+    page: 1,
+    currentPage: 1,
+    // moviesPag: null,
+    results: [],
+    isLoaded: false,
     movieDetailed: null,
-    moviesOfGenre: [],
-    isLoadedMovies: false,
-    // isLoadedDetails: false
+    dates: {
+        max: "",
+        min: ""
+    },
+    query: null,
+
 }
 
 const loadMovies = createAsyncThunk(
     "moviesSlice/loadMovies",
-    async (page: string, thunkAPI) => {
+    async (params: ISearchParams, thunkAPI) => {
         try {
-            const movies = await moviesService.getAll(page);
+            const movies = await moviesService.getAll(params);
             thunkAPI.dispatch(moviesActions.changeLoadStatus(true));
             return thunkAPI.fulfillWithValue(movies);
         } catch (e) {
@@ -53,21 +51,27 @@ export const moviesSlice = createSlice({
         name: "moviesSlice",
         initialState: moviesInitState,
         reducers: {
-            saveMoviesFilteredByGenre: (state, action: PayloadAction<IMovie[]>) => {
-                state.moviesOfGenre = action.payload;
-            },
-
             changeLoadStatus: (state, action: PayloadAction<boolean>) => {
-                state.isLoadedMovies = action.payload;
+                state.isLoaded = action.payload;
             },
-            changeMoreDetailsStatus: (state, action: PayloadAction<boolean>) => {
-                // state.isLoadedDetails = action.payload;
-            }
+            changeQuery: (state, action: PayloadAction<string | null>) => {
+                state.query = action.payload;
+            },
+            changePage: (state, action: PayloadAction<number>) => {
+                state.currentPage = action.payload;
+            },
+            // changeMoreDetailsStatus: (state, action: PayloadAction<boolean>) => {
+            //     // state.isLoadedDetails = action.payload;
+            // }
         },
         extraReducers: builder =>
             builder
                 .addCase(loadMovies.fulfilled, (state, action) => {
-                    state.moviesPag = action.payload;
+                    const {results, total_pages, total_results, page} = action.payload;
+                    state.results = results;
+                    state.total_pages = total_pages;
+                    state.page = page;
+                    state.total_results = total_results
                 })
                 .addCase(loadMovies.rejected, (state, action) => {
                     ///

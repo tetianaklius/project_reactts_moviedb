@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import styles from "./MovieCardComponent.module.css";
 import {IMovie} from "../../models/Movies/IMovie";
 import PosterPreviewComponent from "../PosterPreviewComponent/PosterPreviewComponent";
-import StarsRatingComponent from "../StarsRatingComponent/StarsRatingComponent";
+import {StarsRatingComponent} from "../StarsRatingComponent/StarsRatingComponent";
 
 
 interface IProps {
@@ -24,7 +24,7 @@ export const MovieCardComponent: FC<IProps> = ({movie}) => {
                 <div>
                     {movie.title}
                 </div>
-                <StarsRatingComponent/>
+                {/*<StarsRatingComponent movie={movie}/>*/}
             </div>
         );
     }

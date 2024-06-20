@@ -1,29 +1,33 @@
 import React, {FC, useEffect} from 'react';
-import {useParams} from "react-router-dom";
 
 import MoviesComponent from "../../components/MoviesComponent/MoviesComponent";
-import {useAppDispatch} from "../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {moviesActions} from "../../redux/slices/moviesSlice";
 import styles from "./MoviesPage.module.css";
+import {ISearchParams} from "../../models/Search/SearchParams";
+import PaginationComponent from "../../components/PaginationComponent/PaginationComponent";
 
 
 const MoviesPage: FC = () => {
-    const {page} = useParams();
     const dispatch = useAppDispatch();
+    const {currentPage} = useAppSelector(state => state.moviesSlice);
+
+    const storageCurrentPage = localStorage.getItem("pageCurrent");
+    const params: ISearchParams = {
+        page: storageCurrentPage,
+        language: "uk-UA",
+        sort_by: "vote_count.desc"
+    }
 
     useEffect((): void => {
-        if (page) {
-            dispatch(moviesActions.loadMovies(page))
-        } else {
-            dispatch(moviesActions.loadMovies("1"))
-        }
+        dispatch(moviesActions.loadMovies(params));
 
-    }, [page])
+    }, [currentPage]);
 
     return (
         <div className={styles.main}>
-            {/*<PaginationComponent page={"1"}/>*/}
             <MoviesComponent/>
+            <PaginationComponent/>
         </div>
     );
 };
