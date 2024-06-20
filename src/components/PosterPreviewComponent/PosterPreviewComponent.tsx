@@ -10,7 +10,7 @@ interface IProps {
 const PosterPreviewComponent: FC<IProps> = ({path}) => {
     return (
         <div className={styles.poster}>
-            <img src={`${urls.poster.base500}/${path}`} alt="movie poster"/>
+            <img src={`${urls.poster.base}/${urls.poster.size.size_500}/${path}`} alt="movie poster"/>
         </div>
     );
 };
