@@ -1,28 +1,23 @@
-import axios from "axios";
-
-import {baseUrl, urls} from "../constants/urls";
+import {urls} from "../constants/urls";
 import {IMoviesPaginated} from "../models/Movies/IMoviesPaginated";
 import {IMovieDetailed} from "../models/Movies/IMovieDetailed";
+import {axiosInstance} from "./api.service";
+import {ISearchParams} from "../models/Search/SearchParams";
 
-const axiosInstance = axios.create({
-    baseURL: baseUrl,
-    headers: {}
-});
-
-const token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiM2ZkOThkMmRkZGI3NjJiZjdmNjMzYWY0NDY0MmI0YyIsInN1YiI6IjY2NmUwMzgxMzIwY2I1NjZjM2UyNDg4ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.D4xdZtrX0R-VzTW5S9IXfamn61P4UGictVgJocakOh8";
-axiosInstance.interceptors.request.use(request => {
-        request.headers.set("Authorization", `Bearer ${token}`)
-        return request;
-    }
-);
 
 export const moviesService = {
-    getAll: async (page: string): Promise<IMoviesPaginated> => {
-        const response = await axiosInstance.get<IMoviesPaginated>(urls.movies.all(+page));
+    getAll: async (params: ISearchParams): Promise<IMoviesPaginated> => {
+        const response = await axiosInstance.get<IMoviesPaginated>(
+            params.query ? urls.movies.byStringName : urls.movies.all, {params}
+        );
         return response.data;
     },
     getById: async (id: string): Promise<IMovieDetailed> => {
-        const response = await axiosInstance.get<IMovieDetailed>(urls.movies.byId(+id));
+        const response = await axiosInstance.get<IMovieDetailed>(urls.movies.byId(+id), {params: {language: "uk-UA"}});
         return response.data;
-    }
+    },
+    getImagesPaths: async (id: string): Promise<string[]> => {
+        const response = await axiosInstance.get<string[]>(urls.images(+id));
+        return response.data;
+    },
 }
