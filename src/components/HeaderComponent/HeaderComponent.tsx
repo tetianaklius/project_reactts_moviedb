@@ -1,21 +1,18 @@
-import React, {useContext, useState} from "react";
+import React from "react";
 import {useNavigate} from "react-router-dom";
 import Switch from "@mui/material/Switch";
 
 import styles from "./HeaderComponent.module.css";
 import UserInfoComponent from "../UserInfoComponent/UserInfoComponent";
-import {useAppDispatch} from "../../redux/store";
-import {ColorThemeContext} from "../../context/colorThemeContext";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {genresActions} from "../../redux/slices/genresSlice";
 import {moviesActions} from "../../redux/slices/moviesSlice";
+import {colorThemes} from "../../constants/colorTheme";
 
 const HeaderComponent = () => {
-
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-
-    const {toggleTheme} = useContext(ColorThemeContext);
-    const [checked, setChecked] = useState<boolean>(false);
+    const {useDarkTheme} = useAppSelector(state => state.genresSlice);
 
     const allMovies = () => {
         localStorage.setItem("pageCurrent", "1");
@@ -40,11 +37,9 @@ const HeaderComponent = () => {
         navigate('search')
     }
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.checked);
-        toggleTheme();
+    const handleChange = () => {
+        dispatch(genresActions.changeTheme(!useDarkTheme));
     };
-    // const styleToggle = styleSwitch();
 
     return (
         <div className={styles.header_common}>
@@ -70,10 +65,12 @@ const HeaderComponent = () => {
                 </div>
             </div>
             <div className={styles.theme_toggle}>
-                <Switch checked={checked}
-
-                        onChange={handleChange}
-                        inputProps={{"aria-label": "controlled"}}
+                <Switch
+                    onChange={handleChange}
+                    inputProps={{"aria-label": "controlled"}}
+                    style={useDarkTheme
+                        ? colorThemes.dark
+                        : colorThemes.light}
                 />
             </div>
             <div className={styles.account_box}>

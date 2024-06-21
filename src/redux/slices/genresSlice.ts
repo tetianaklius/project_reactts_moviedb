@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
 import {IGenres} from "../../models/Genres/IGenres";
@@ -8,13 +8,14 @@ import {IGenre} from "../../models/Genres/IGenre";
 type GenresSliceType = {
     genres: IGenres | null,
     currentGenre: IGenre | null,
+    useDarkTheme: boolean
 }
 
 const genresInitState: GenresSliceType = {
     genres: null,
-    currentGenre: null
+    currentGenre: null,
+    useDarkTheme: true
 }
-
 
 const loadGenres = createAsyncThunk(
     "genresSlice/loadGenres",
@@ -34,11 +35,14 @@ export const genresSlice = createSlice({
         reducers: {
             changeGenreCurrent: (state, action) => {
                 state.currentGenre = action.payload;
+            },
+            changeTheme: (state, action) => {
+                state.useDarkTheme = action.payload;
             }
         },
         extraReducers: builder =>
             builder
-                .addCase(loadGenres.fulfilled, (state, action) => {
+                .addCase(loadGenres.fulfilled, (state, action: PayloadAction<IGenres>) => {
                     state.genres = action.payload;
                 })
                 .addCase(loadGenres.rejected, (state, action) => {

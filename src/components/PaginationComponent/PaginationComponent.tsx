@@ -1,15 +1,15 @@
-import React, {FC, useContext} from 'react';
+import React, {FC} from 'react';
 
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {moviesActions} from "../../redux/slices/moviesSlice";
 import styles from "./PaginationComponent.module.css";
-import {ColorThemeContext} from "../../context/colorThemeContext";
+import {colorThemes} from "../../constants/colorTheme";
 
 const PaginationComponent: FC = () => {
     const dispatch = useAppDispatch();
-    const {total_pages, total_results, query} = useAppSelector(state => state.moviesSlice);
+    const {moviesPag, query} = useAppSelector(state => state.moviesSlice);
+    const {useDarkTheme} = useAppSelector(state => state.genresSlice);
     const pageStr = localStorage.getItem("pageCurrent");
-    const {theme} =useContext(ColorThemeContext);
 
     let page: number = 1;
     if (pageStr) {
@@ -17,8 +17,8 @@ const PaginationComponent: FC = () => {
     }
     const prev: number = page - 1;
     let next;
-    if (total_pages) {
-        next = (page < total_pages) ? page + 1 : null;
+    if (moviesPag?.total_pages) {
+        next = (page < moviesPag.total_pages) ? page + 1 : null;
     }
 
     const changePage = (action: string) => {
@@ -35,10 +35,13 @@ const PaginationComponent: FC = () => {
     }
 
     return (
-        <div className={styles.pagination_box}
-            style={{background: theme.background, color: theme.color}}
+        <div
+            className={styles.pagination_box}
+            style={useDarkTheme
+                ? colorThemes.dark
+                : colorThemes.light}
         >
-            <h5>Пошук серед {total_results} фільмів
+            <h5>Пошук серед {moviesPag?.total_results} фільмів
                 {query ? <> для слова <span className={styles.SearchKey}>«{query}»</span> </> : ""}
             </h5>
             <div>
@@ -61,7 +64,7 @@ const PaginationComponent: FC = () => {
             </div>
             <div className={styles.page_num}>
                 <span className={styles.currPage}>сторінка {page}</span>
-                <span className={styles.totalPage}>/{total_pages}</span>
+                <span className={styles.totalPage}>/{moviesPag?.total_pages}</span>
             </div>
         </div>
     );

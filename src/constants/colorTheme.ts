@@ -10,9 +10,7 @@ const dark: IColorTheme = {
     color: "rgb(255,255,255)"
 }
 
-const colorThemes = {
+export const colorThemes = {
     light,
     dark
 }
-
-export {colorThemes}
