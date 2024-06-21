@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
+
+import {ColorThemeContext} from "../../context/colorThemeContext";
 
 const ThemeToggleComponent = () => {
+    const {toggleTheme} = useContext(ColorThemeContext);
     return (
         <div>
-            toggle button
+            <button onClick={() => toggleTheme}></button>
         </div>
     );
 };
