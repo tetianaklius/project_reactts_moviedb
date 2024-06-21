@@ -7,10 +7,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to top, #1f1738, rgba(23, 17, 40, 0.78));
+    background: rgba(23, 17, 41, 0.78);
     cursor: pointer;
 }
 
 .genre_box:hover {
-    background: rgb(31, 23, 56);
+    background: rgba(31, 23, 56, 0.83);
 }

@@ -1,13 +1,15 @@
-import React, {FC} from 'react';
+import React, {FC, useContext} from 'react';
 
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {moviesActions} from "../../redux/slices/moviesSlice";
 import styles from "./PaginationComponent.module.css";
+import {ColorThemeContext} from "../../context/colorThemeContext";
 
 const PaginationComponent: FC = () => {
     const dispatch = useAppDispatch();
     const {total_pages, total_results, query} = useAppSelector(state => state.moviesSlice);
     const pageStr = localStorage.getItem("pageCurrent");
+    const {theme} =useContext(ColorThemeContext);
 
     let page: number = 1;
     if (pageStr) {
@@ -33,7 +35,9 @@ const PaginationComponent: FC = () => {
     }
 
     return (
-        <div className={styles.pagination_box}>
+        <div className={styles.pagination_box}
+            style={{background: theme.background, color: theme.color}}
+        >
             <h5>Пошук серед {total_results} фільмів
                 {query ? <> для слова <span className={styles.SearchKey}>«{query}»</span> </> : ""}
             </h5>
@@ -56,7 +60,8 @@ const PaginationComponent: FC = () => {
                 </button>
             </div>
             <div className={styles.page_num}>
-                <span>сторінка {page}</span>/{total_pages}
+                <span className={styles.currPage}>сторінка {page}</span>
+                <span className={styles.totalPage}>/{total_pages}</span>
             </div>
         </div>
     );

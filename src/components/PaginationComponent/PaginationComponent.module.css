@@ -13,7 +13,7 @@
     border: none;
     background: rgba(94, 84, 125, 0.62);
     height: 6vh;
-    width: 25vw;
+    width: 22vw;
     min-height: 20px;
     cursor: pointer;
     color: white;
@@ -30,11 +30,16 @@
 
 .page_num {
     font-size: smaller;
-    color: rgba(138, 131, 163, 0.8);
+    /*color: rgba(138, 131, 163, 0.8);*/
     margin-bottom: 1vh;
 }
 
-.page_num span {
+.currPage {
     font-size: larger;
-    color: white;
+    /*color: white;*/
+}
+
+.totalPage {
+    /*font-size: smaller;*/
+    color: rgba(138, 131, 163, 0.8);
 }

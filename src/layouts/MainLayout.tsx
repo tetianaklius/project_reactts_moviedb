@@ -13,17 +13,11 @@ const MainLayout = () => {
     const [switchOn, setSwitchOn] = useState<boolean>(false);
 
     const toggleTheme = (): void => {
-        setSwitchOn((prevState: boolean) => !prevState); //true
-
-        // if (currentTheme === colorThemes.dark) {
-        //     setCurrentTheme(colorThemes.light);
-        // } else {
-        //     setCurrentTheme(colorThemes.dark);
-        // }
+        setSwitchOn((prevState: boolean) => !prevState);
 
         setCurrentTheme((prevState: IColorTheme): IColorTheme =>
             prevState === colorThemes.light ? colorThemes.dark : colorThemes.light
-        ); // темна--> світла
+        );
     };
 
     return (
