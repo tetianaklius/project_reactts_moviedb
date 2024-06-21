@@ -26,6 +26,7 @@
 .navbar_text {
     color: white;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .theme_toggle {
