@@ -4,10 +4,11 @@ import {useLocation} from "react-router-dom";
 import styles from "./MovieInfoComponent.module.css";
 import GenreBadgeComponent from "../GenreBadgeComponent/GenreBadgeComponent";
 import {IMovie} from "../../models/Movies/IMovie";
-import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {useAppDispatch} from "../../redux/store";
 import {moviesActions} from "../../redux/slices/moviesSlice";
 import MoreMovieDetailsComponent from "../MoreMovieDetailsComponent/MoreMovieDetailsComponent";
 import {urls} from "../../constants/urls";
+import {StarsRatingComponent} from "../StarsRatingComponent/StarsRatingComponent";
 
 export const MovieInfoComponent: FC = () => {
     const location = useLocation();
@@ -15,7 +16,6 @@ export const MovieInfoComponent: FC = () => {
 
     const dispatch = useAppDispatch();
     const [trigger, setTrigger] = useState<boolean>(false);
-    const {movieDetailed} = useAppSelector(state => state.moviesSlice);
 
     return (
         <div
@@ -42,8 +42,8 @@ export const MovieInfoComponent: FC = () => {
                         {movie.adult && <small>adult</small>}
                     </div>
                     <div className={styles.stars_rating}>
-                        {/*<StarsRatingComponent key={movie.id} movie={movie}/>*/}
-                        ({movie.vote_count})
+                        <StarsRatingComponent key={movie.id} movie={movie}/>
+                        <span className={styles.vote_count}>(голосів: {movie.vote_count})</span>
                     </div>
                     <div className={styles.badges_box}>
                         <GenreBadgeComponent key={movie.id}/>

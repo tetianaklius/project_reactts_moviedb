@@ -52,3 +52,12 @@
     margin-top: -5vh;
     margin-bottom: 10px;
 }
+
+.stars_rating {
+    display: flex;
+    align-items: start;
+}
+
+.vote_count {
+    margin-left: 1vw;
+}
