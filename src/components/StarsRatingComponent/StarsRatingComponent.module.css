@@ -1,0 +1,11 @@
+.stars_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.vote_average {
+    display: flex;
+    font-size: small;
+}

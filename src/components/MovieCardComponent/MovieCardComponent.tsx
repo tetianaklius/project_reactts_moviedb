@@ -21,10 +21,10 @@ export const MovieCardComponent: FC<IProps> = ({movie}) => {
                 <div className={styles.poster_preview}>
                     <PosterPreviewComponent key={movie.id} path={movie.poster_path}/>
                 </div>
-                <div>
+                <div className={styles.title}>
                     {movie.title}
                 </div>
-                {/*<StarsRatingComponent movie={movie}/>*/}
+                <StarsRatingComponent movie={movie}/>
             </div>
         );
     }

@@ -1,9 +1,8 @@
-import React, {FC, useContext} from 'react';
+import React, {FC} from 'react';
 
 import {useAppSelector} from "../../redux/store";
 import {MovieCardComponent} from "../MovieCardComponent/MovieCardComponent";
 import styles from "./MoviesComponent.module.css";
-import {ColorThemeContext} from "../../context/colorThemeContext";
 
 const MoviesComponent: FC = () => {
     const {results: movies} = useAppSelector(state => state.moviesSlice);
