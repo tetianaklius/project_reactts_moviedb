@@ -5,7 +5,7 @@ import MainLayout from "../layouts/MainLayout";
 import MoviesPage from "../pages/MoviesPage/MoviesPage";
 import GenresPage from "../pages/GenresPage/GenresPage";
 import MoviePage from "../pages/MoviePage/MoviePage";
-import SearchPage from "../pages/SearchPage/SearchPage";
+import {SearchPage} from "../pages/SearchPage/SearchPage";
 
 const routes: RouteObject[] = [
     {

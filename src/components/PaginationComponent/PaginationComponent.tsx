@@ -35,7 +35,7 @@ const PaginationComponent: FC = () => {
     return (
         <div className={styles.pagination_box}>
             <h5>Пошук серед {total_results} фільмів
-                {query ? <> для слова <span className={styles.SearchKey}>{query}</span> </> : ""}
+                {query ? <> для слова <span className={styles.SearchKey}>«{query}»</span> </> : ""}
             </h5>
             <div>
                 <button
