@@ -34,9 +34,9 @@ const PaginationComponent: FC = () => {
 
     return (
         <div className={styles.pagination_box}>
-            <h4>Пошук {total_results} фільмів
+            <h5>Пошук серед {total_results} фільмів
                 {query ? <> для слова <span className={styles.SearchKey}>{query}</span> </> : ""}
-            </h4>
+            </h5>
             <div>
                 <button
                     onClick={() => {

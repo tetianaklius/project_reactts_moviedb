@@ -41,6 +41,7 @@ const GenresPage: FC = () => {
                 {currGenre ?
                     <>
                         <h4>Фільми для жанру {currGenre.name}</h4>
+                        <PaginationComponent/>
                         <MoviesComponent/>
                         <PaginationComponent/>
                     </>
