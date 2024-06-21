@@ -1,7 +1,28 @@
 .search_form_box {
-    height: 10vh;
+    height: 15vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#input_1 {
+    height: 3.5vh;
+    width: 12vw;
+    border: dotted 0.4vh #e5defb;
+}
+
+#button_1 {
+    height: 4.3vh;
+    border: none;
+    background: #312752;
+    min-height: 20px;
+    cursor: pointer;
+    color: white;
+    margin-top: -5vh;
+    margin-bottom: 10px;
+}
+
+#button_1:hover {
+    background: rgba(49, 39, 82, 0.82);
 }

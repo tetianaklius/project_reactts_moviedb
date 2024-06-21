@@ -23,8 +23,8 @@ export const SearchMovieComponent = () => {
         <div>
             <div className={styles.search_form_box}>
                 <form onSubmit={handleSubmit(getSearchStr)}>
-                    <input type="text" placeholder={"текст для пошуку"} {...register("searchStr")}/>
-                    <button>Search</button>
+                    <input id={styles.input_1} type="text" placeholder={"Текст для пошуку"} {...register("searchStr")}/>
+                    <button id={styles.button_1}>Search</button>
                 </form>
             </div>
         </div>
