@@ -19,5 +19,5 @@ export const moviesService = {
     getImagesPaths: async (id: string): Promise<string[]> => {
         const response = await axiosInstance.get<string[]>(urls.images(+id));
         return response.data;
-    },
+    }
 }

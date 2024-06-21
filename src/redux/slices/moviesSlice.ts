@@ -4,28 +4,43 @@ import {AxiosError} from "axios";
 import {moviesService} from "../../services/movies.api.service";
 import {ISearchParams} from "../../models/Search/SearchParams";
 import {IMoviesPaginated} from "../../models/Movies/IMoviesPaginated";
+import {IMovie} from "../../models/Movies/IMovie";
+import {IMovieDetailed} from "../../models/Movies/IMovieDetailed";
+
+export type moviesSliceType = {
+    moviesPag: IMoviesPaginated | null,
+    movie: IMovie | null,
+    isLoaded: boolean,
+    movieDetailed: IMovieDetailed | null,
+    currentPage: number,
+    page: number,
+    dates: {
+        max: string,
+        min: string
+    },
+    query: string | null
+}
 
 
-const moviesInitState: IMoviesPaginated = {
-    page: 1,
-    currentPage: 1,
-    // moviesPag: null,
-    results: [],
+const moviesInitState: moviesSliceType = {
+    moviesPag: null,
+    movie: null,
     isLoaded: false,
     movieDetailed: null,
+    currentPage: 1,
+    page: 1,
     dates: {
         max: "",
         min: ""
     },
-    query: null,
-
+    query: null
 }
 
 const loadMovies = createAsyncThunk(
     "moviesSlice/loadMovies",
     async (params: ISearchParams, thunkAPI) => {
         try {
-            const movies = await moviesService.getAll(params);
+            const movies: IMoviesPaginated = await moviesService.getAll(params);
             thunkAPI.dispatch(moviesActions.changeLoadStatus(true));
             return thunkAPI.fulfillWithValue(movies);
         } catch (e) {
@@ -39,7 +54,6 @@ const loadMovieDetails = createAsyncThunk(
     async (id: string, thunkAPI) => {
         try {
             const movieDetailed = await moviesService.getById(id);
-            // thunkAPI.dispatch(moviesActions.changeMoreDetailsStatus(true));
             return thunkAPI.fulfillWithValue(movieDetailed);
         } catch (e) {
             const error = e as AxiosError;
@@ -60,23 +74,16 @@ export const moviesSlice = createSlice({
             changePage: (state, action: PayloadAction<number>) => {
                 state.currentPage = action.payload;
             },
-            // changeMoreDetailsStatus: (state, action: PayloadAction<boolean>) => {
-            //     // state.isLoadedDetails = action.payload;
-            // }
         },
         extraReducers: builder =>
             builder
-                .addCase(loadMovies.fulfilled, (state, action) => {
-                    const {results, total_pages, total_results, page} = action.payload;
-                    state.results = results;
-                    state.total_pages = total_pages;
-                    state.page = page;
-                    state.total_results = total_results
+                .addCase(loadMovies.fulfilled, (state, action: PayloadAction<IMoviesPaginated>) => {
+                    state.moviesPag = action.payload;
                 })
                 .addCase(loadMovies.rejected, (state, action) => {
                     ///
                 })
-                .addCase(loadMovieDetails.fulfilled, (state, action) => {
+                .addCase(loadMovieDetails.fulfilled, (state, action: PayloadAction<IMovieDetailed>) => {
                     state.movieDetailed = action.payload;
                 })
                 .addCase(loadMovieDetails.rejected, (state, action) => {
