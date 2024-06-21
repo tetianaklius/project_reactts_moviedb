@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import {createBrowserRouter, Navigate} from "react-router-dom";
 import {RouteObject} from "react-router";
 
 import MainLayout from "../layouts/MainLayout";
@@ -12,6 +12,7 @@ const routes: RouteObject[] = [
         path: "",
         element: <MainLayout/>,
         children: [
+            {index: true, element: <Navigate to={"movies"}/>},
             {path: "movies", element: <MoviesPage/>},
             {path: "genres", element: <GenresPage/>},
             {path: "search", element: <SearchPage/>},
