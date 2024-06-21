@@ -8,4 +8,5 @@
 .vote_average {
     display: flex;
     font-size: small;
+    font-weight: bolder;
 }
