@@ -18,6 +18,7 @@ const routes: RouteObject[] = [
             {path: "search", element: <SearchPage/>},
             {path: "movies/:id", element: <MoviePage/>},
             {path: "genres/:id", element: <MoviePage/>},
+            {path: "search/:id", element: <MoviePage/>},
         ]
     }
 ]
