@@ -1,0 +1,40 @@
+.pagination_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination_box h4 {
+    margin-bottom: 10px;
+}
+
+.button_prev_next {
+    border: none;
+    background: rgba(94, 84, 125, 0.62);
+    height: 6vh;
+    width: 25vw;
+    min-height: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.button_prev_next:hover {
+    background: rgba(138, 131, 163, 0.8);
+}
+
+.button_prev_next:disabled {
+    background: rgba(37, 31, 43, 0.13);
+    cursor: auto;
+}
+
+.page_num {
+    font-size: smaller;
+    color: rgba(138, 131, 163, 0.8);
+    margin-bottom: 1vh;
+}
+
+.page_num span {
+    font-size: larger;
+    color: white;
+}

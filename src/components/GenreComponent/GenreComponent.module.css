@@ -3,10 +3,14 @@
 }
 
 .genre_box {
-    width: 6%;
+    width: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #282c34;
+    background: linear-gradient(to top, #1f1738, rgba(23, 17, 40, 0.78));
     cursor: pointer;
+}
+
+.genre_box:hover {
+    background: rgb(31, 23, 56);
 }

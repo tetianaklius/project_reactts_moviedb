@@ -26,6 +26,7 @@ const MoviesPage: FC = () => {
 
     return (
         <div className={styles.main}>
+            <PaginationComponent/>
             <MoviesComponent/>
             <PaginationComponent/>
         </div>

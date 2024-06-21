@@ -18,14 +18,15 @@ export const MovieInfoComponent: FC = () => {
     const {movieDetailed} = useAppSelector(state => state.moviesSlice);
 
     return (
-        <div className={styles.movie_component}>
+        <div
+            className={styles.movie_component}
+            style={{
+                backgroundImage: `linear-gradient(to right, rgba(255,255,255, 0.65) 0 100%),`
+                    + `url(${urls.poster.base}/${urls.poster.size.original}/${movie.backdrop_path})`,
+                backgroundSize: "cover",
+            }}>
 
-            <div className={styles.movie_box}
-                 style={{
-                     backgroundImage: `linear-gradient(to right, rgba(255,255,255, 0.65) 0 100%),`
-                         + `url(${urls.poster.base}/${urls.poster.size.original}/${movie.backdrop_path})`,
-                     backgroundSize: "cover",
-                 }}>
+            <div className={styles.movie_box}>
 
                 <div className={styles.movie_poster}>
                     <img src={`${urls.poster.base}/${urls.poster.size.size_400}/${movie.poster_path}`}
@@ -51,7 +52,6 @@ export const MovieInfoComponent: FC = () => {
                         {movie.overview}
                     </div>
                 </div>
-
             </div>
 
             <button className={styles.button_show_details}
@@ -62,6 +62,7 @@ export const MovieInfoComponent: FC = () => {
                 show more details
             </button>
             {trigger && <MoreMovieDetailsComponent key={movie.id}/>}
+
             <div className={styles.actors_box}></div>
 
             <div className={styles.trailer_box}>

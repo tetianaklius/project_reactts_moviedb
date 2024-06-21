@@ -6,6 +6,7 @@ import {ISearchParams} from "../../models/Search/SearchParams";
 import {moviesActions} from "../../redux/slices/moviesSlice";
 import MoviesComponent from "../../components/MoviesComponent/MoviesComponent";
 import PaginationComponent from "../../components/PaginationComponent/PaginationComponent";
+import styles from "./GenresPage.module.css";
 
 const GenresPage: FC = () => {
     const dispatch = useAppDispatch();
@@ -36,10 +37,10 @@ const GenresPage: FC = () => {
     return (
         <div>
             <GenresComponent/>
-            <div>
+            <div className={styles.movies_box}>
                 {currGenre ?
                     <>
-                        <h3>Фільми для жанру {currGenre.name}</h3>
+                        <h4>Фільми для жанру {currGenre.name}</h4>
                         <MoviesComponent/>
                         <PaginationComponent/>
                     </>

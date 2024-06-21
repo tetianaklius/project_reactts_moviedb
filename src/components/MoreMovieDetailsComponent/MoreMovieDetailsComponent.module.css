@@ -1,5 +1,11 @@
 .more_info_box {
     display: flex;
     flex-direction: column;
-    color: white;
+    justify-content: center;
+    font-size: larger;
+}
+
+.text_box {
+    margin-bottom: 2vh;
+    margin-left: -14vw;
 }

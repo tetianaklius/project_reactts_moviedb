@@ -33,28 +33,31 @@ const PaginationComponent: FC = () => {
     }
 
     return (
-        <div>
-            <h3>Пошук {total_results} фільмів
+        <div className={styles.pagination_box}>
+            <h4>Пошук {total_results} фільмів
                 {query ? <> для слова <span className={styles.SearchKey}>{query}</span> </> : ""}
-            </h3>
-
-            <button onClick={() => {
-                changePage("prev");
-            }}
+            </h4>
+            <div>
+                <button
+                    onClick={() => {
+                        changePage("prev");
+                    }}
+                    className={styles.button_prev_next}
                     disabled={!prev}
-            >prev
-            </button>
-
-            <div> {page}</div>
-
-            <button onClick={() => {
-                changePage("next");
-            }}
+                >prev
+                </button>
+                <button
+                    onClick={() => {
+                        changePage("next");
+                    }}
+                    className={styles.button_prev_next}
                     disabled={!next}
-            >next
-            </button>
-
-            <div> всього сторінок : {total_pages}</div>
+                >next
+                </button>
+            </div>
+            <div className={styles.page_num}>
+                <span>сторінка {page}</span>/{total_pages}
+            </div>
         </div>
     );
 };
