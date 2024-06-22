@@ -1,0 +1,16 @@
+.error_page_light {
+    height: 100vh;
+    background: white;
+}
+
+.error_page_dark {
+    height: 100vh;
+    background: rgba(7, 5, 13, 0.9);
+    color: white;
+}
+
+.error_message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

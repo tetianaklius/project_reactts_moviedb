@@ -6,11 +6,13 @@ import MoviesPage from "../pages/MoviesPage/MoviesPage";
 import GenresPage from "../pages/GenresPage/GenresPage";
 import MoviePage from "../pages/MoviePage/MoviePage";
 import {SearchPage} from "../pages/SearchPage/SearchPage";
+import ErrorLayout from "../layouts/ErrorLayout/ErrorLayout";
 
 const routes: RouteObject[] = [
     {
         path: "",
         element: <MainLayout/>,
+        errorElement: <ErrorLayout/>,
         children: [
             {index: true, element: <Navigate to={"movies"}/>},
             {path: "movies", element: <MoviesPage/>},

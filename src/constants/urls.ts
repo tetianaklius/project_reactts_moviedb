@@ -10,10 +10,10 @@ export const urls = {
         base: "https://image.tmdb.org/t/p/",
         size: {
             original: "original",
-            size_500: "w500/",
-            size_400: "w400/",
-            size_300: "w300/",
-        }
+            size_500: "w500",
+            size_400: "w400",
+            size_300: "w300",
+        },
     },
     images: (movie_id: number): string => `${baseUrl}/movie/${movie_id}/images}`,
     genres: {
