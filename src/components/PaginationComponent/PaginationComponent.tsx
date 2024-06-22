@@ -44,22 +44,22 @@ const PaginationComponent: FC = () => {
             <h5>Пошук серед {moviesPag?.total_results} фільмів
                 {query ? <> для слова <span className={styles.SearchKey}>«{query}»</span> </> : ""}
             </h5>
-            <div>
+            <div className={styles.buttons}>
                 <button
                     onClick={() => {
                         changePage("prev");
                     }}
-                    className={styles.button_prev_next}
+                    className={`${styles.button_prev_next} ${styles.left}`}
                     disabled={!prev}
-                >prev
+                >&laquo;
                 </button>
                 <button
                     onClick={() => {
                         changePage("next");
                     }}
-                    className={styles.button_prev_next}
+                    className={`${styles.button_prev_next} ${styles.right}`}
                     disabled={!next}
-                >next
+                >&raquo;
                 </button>
             </div>
             <div className={styles.page_num}>

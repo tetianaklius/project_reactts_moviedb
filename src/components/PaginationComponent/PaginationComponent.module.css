@@ -9,14 +9,31 @@
     margin-bottom: 10px;
 }
 
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
 .button_prev_next {
     border: none;
-    background: rgba(94, 84, 125, 0.62);
-    height: 6vh;
+    height: 8vh;
     width: 22vw;
     min-height: 20px;
     cursor: pointer;
     color: white;
+    font-size: xxx-large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right {
+    margin-left: 1px;
+    background: linear-gradient(to right, rgba(31, 23, 56, 0.62), #382c5d);
+}
+
+.left {
+    background: linear-gradient(to left, rgba(31, 23, 56, 0.62), #382c5d);
 }
 
 .button_prev_next:hover {
@@ -26,20 +43,18 @@
 .button_prev_next:disabled {
     background: rgba(37, 31, 43, 0.13);
     cursor: auto;
+    color: #282c34;
 }
 
 .page_num {
     font-size: smaller;
-    /*color: rgba(138, 131, 163, 0.8);*/
     margin-bottom: 1vh;
 }
 
 .currPage {
     font-size: larger;
-    /*color: white;*/
 }
 
 .totalPage {
-    /*font-size: smaller;*/
     color: rgba(138, 131, 163, 0.8);
 }

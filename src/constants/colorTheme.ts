@@ -6,7 +6,7 @@ const light: IColorTheme = {
 }
 
 const dark: IColorTheme = {
-    background: "rgb(0,0,0)",
+    background: "rgb(7,5,13)",
     color: "rgb(255,255,255)"
 }
 

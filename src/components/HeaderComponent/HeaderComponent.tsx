@@ -45,23 +45,17 @@ const HeaderComponent = () => {
         <div className={styles.header_common}>
             <div className={styles.logo_box}>logo</div>
             <div className={styles.navbar}>
-                <div>
-                    <div className={styles.navbar_text} onClick={() => {
-                        allMovies();
-                    }}>Фільми
-                    </div>
+                <div className={styles.navbar_item} onClick={() => {
+                    allMovies();
+                }}>Фільми
                 </div>
-                <div>
-                    <div className={styles.navbar_text} onClick={() => {
-                        byGenres();
-                    }}>Жанри
-                    </div>
+                <div className={styles.navbar_item} onClick={() => {
+                    byGenres();
+                }}>Жанри
                 </div>
-                <div>
-                    <div className={styles.navbar_text} onClick={() => {
-                        search();
-                    }}>Пошук
-                    </div>
+                <div className={styles.navbar_item} onClick={() => {
+                    search();
+                }}>Пошук
                 </div>
             </div>
             <div className={styles.theme_toggle}>
