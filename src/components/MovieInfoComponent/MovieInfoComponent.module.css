@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: black;
 }
 
 .movie_box {
@@ -35,6 +34,12 @@
 .title {
     margin-top: 6%;
     font-size: xxx-large;
+}
+
+.adult_mark {
+    margin-left: 1vw;
+    color: #F28C28;
+    font-weight: bold;
 }
 
 .overview {
