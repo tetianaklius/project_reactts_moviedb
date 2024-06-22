@@ -29,6 +29,7 @@ export const SearchPage = () => {
     return (
         <div className={styles.search_page}>
             <SearchMovieComponent/>
+            {query && <PaginationComponent/>}
             {query && <MoviesComponent/>}
             {query && <PaginationComponent/>}
         </div>

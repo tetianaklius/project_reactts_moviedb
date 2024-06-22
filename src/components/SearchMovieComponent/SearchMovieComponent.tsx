@@ -1,15 +1,20 @@
 import {SubmitHandler, useForm} from "react-hook-form";
+import {joiResolver} from "@hookform/resolvers/joi";
 
 import {useAppDispatch} from "../../redux/store";
 import {moviesActions} from "../../redux/slices/moviesSlice";
 import styles from "./SearchMovieComponent.module.css";
+import {searchReqValidator} from "../../validators/searchReqValidator";
 
 interface IProps {
     searchStr: string | null
 }
 
 export const SearchMovieComponent = () => {
-    const {register, handleSubmit} = useForm<IProps>();
+    const {register, handleSubmit, formState: {errors}} = useForm<IProps>({
+        mode: "all",
+        resolver: joiResolver(searchReqValidator)
+    });
     const dispatch = useAppDispatch();
 
     const getSearchStr: SubmitHandler<IProps> = (searchStr) => {
@@ -17,7 +22,13 @@ export const SearchMovieComponent = () => {
             dispatch(moviesActions.changeQuery(searchStr.searchStr))
             localStorage.setItem("pageCurrent", "1");
         }
+        resetForm();
     };
+
+    const resetForm = () => {
+        let form1 = document.forms[0];
+        form1.reset();
+    }
 
     return (
         <div>
@@ -25,8 +36,10 @@ export const SearchMovieComponent = () => {
                 <form onSubmit={handleSubmit(getSearchStr)}>
                     <input id={styles.input_1} type="text" placeholder={"Текст для пошуку"} {...register("searchStr")}/>
                     <button id={styles.button_1}>Search</button>
+                    <div>{errors.searchStr && <span>{errors.searchStr.message}</span>}</div>
                 </form>
             </div>
+
         </div>
     );
 };

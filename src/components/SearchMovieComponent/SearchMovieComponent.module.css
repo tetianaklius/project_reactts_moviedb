@@ -1,9 +1,10 @@
 .search_form_box {
-    height: 15vh;
+    height: 20vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 #input_1 {
