@@ -8,6 +8,7 @@ import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {genresActions} from "../../redux/slices/genresSlice";
 import {moviesActions} from "../../redux/slices/moviesSlice";
 import {colorThemes} from "../../constants/colorTheme";
+import logo from "../../files/blue_long_logo.svg";
 
 const HeaderComponent = () => {
     const dispatch = useAppDispatch();
@@ -43,7 +44,14 @@ const HeaderComponent = () => {
 
     return (
         <div className={styles.header_common}>
-            <div className={styles.logo_box}>logo</div>
+            <div
+                className={styles.logo_box}
+                onClick={() => {
+                    allMovies();
+                }}
+            >
+                <img src={logo} alt="logotype"/>
+            </div>
             <div className={styles.navbar}>
                 <div className={styles.navbar_item} onClick={() => {
                     allMovies();
@@ -70,7 +78,6 @@ const HeaderComponent = () => {
             <div className={styles.account_box}>
                 <UserInfoComponent/>
             </div>
-            <div></div>
         </div>
     );
 };

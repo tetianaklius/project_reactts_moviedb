@@ -13,6 +13,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+
+.logo_box img {
+    width: 80%;
 }
 
 .navbar {
@@ -33,6 +38,7 @@
     cursor: pointer;
     height: 100%;
     width: 30%;
+    font-size: larger;
 }
 
 .navbar_item:hover {
