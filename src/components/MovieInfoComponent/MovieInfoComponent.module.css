@@ -23,6 +23,12 @@
     height: 80%;
 }
 
+.movie_poster:hover {
+    transform: scale(1.45);
+    margin-top: 6vh;
+    z-index: +1;
+}
+
 .movie_description {
     display: flex;
     flex-direction: column;

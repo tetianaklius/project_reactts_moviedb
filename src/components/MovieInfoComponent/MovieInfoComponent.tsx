@@ -36,8 +36,9 @@ export const MovieInfoComponent: FC = () => {
             }>
             <div className={styles.movie_box}>
                 <div className={styles.movie_poster}>
-                    <img src={`${urls.poster.base}/${urls.poster.size.size_400}/${movie.poster_path}`}
-                         alt="movie poster"/>
+                    <img
+                        src={`${urls.poster.base}/${urls.poster.size.original}/${movie.poster_path}`}
+                        alt="movie poster"/>
                 </div>
                 <div className={styles.movie_description}>
                     <div className={styles.title}>
