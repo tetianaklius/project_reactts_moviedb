@@ -3,7 +3,7 @@ export const baseUrl = "https://api.themoviedb.org/3";
 export const urls = {
     movies: {
         all: "/discover/movie",
-        byId: (id: number): string => `/movie/${id}`,
+        byId: (id: number): string => `/movie/${id}?append_to_response=videos`,
         byStringName: "/search/movie"
     },
     poster: {
@@ -15,7 +15,12 @@ export const urls = {
             size_300: "w300",
         },
     },
-    movieImages: (movie_id: number): string => `${baseUrl}/movie/${movie_id}/images}`,
+    video: {
+        base: {
+            youtube: "https://www.youtube.com/embed/"
+        }
+    },
+    // movieImages: (movie_id: number): string => `${baseUrl}/movie/${movie_id}/images}`,
     actors: {
         byMovieId: (movie_id: number): string => `${baseUrl}/movie/${movie_id}/credits}`
     },

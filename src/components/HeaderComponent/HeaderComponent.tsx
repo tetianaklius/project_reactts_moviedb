@@ -42,8 +42,18 @@ const HeaderComponent = () => {
         dispatch(genresActions.changeTheme(!useDarkTheme));
     };
 
+    const BackButton = () => {
+        navigate(-1);
+    }
+
     return (
         <div className={styles.header_common}>
+            <div
+                onClick={() => BackButton()}
+                className={styles.back_button}
+                style={useDarkTheme ? {color: "white"} : {color: "black"}}
+            >Назад&laquo;&laquo;&laquo;
+            </div>
             <div
                 className={styles.logo_box}
                 onClick={() => {

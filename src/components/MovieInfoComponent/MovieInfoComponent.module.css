@@ -27,6 +27,8 @@
     transform: scale(1.45);
     margin-top: 6vh;
     z-index: +1;
+    -webkit-transition: transform 0.5s ease-in-out;
+    cursor: zoom-in;
 }
 
 .movie_description {
@@ -71,4 +73,8 @@
 
 .vote_count {
     margin-left: 1vw;
+}
+
+.trailer_box {
+    margin-top: 3vh;
 }

@@ -1,4 +1,4 @@
-.movie_card {
+.movie_card_dark_theme {
     width: 15vw;
     margin-top: 2vh;
     margin-bottom: 2vh;
@@ -8,11 +8,31 @@
     align-items: center;
 }
 
-.movie_card:hover {
+.movie_card_dark_theme:hover {
     transform: scale(1.45);
+    -webkit-transition: transform 0.5s ease-in-out;
     margin-top: 6vh;
     z-index: +1;
-    background: rgba(7,5,13,0.9);
+    background: rgba(7, 5, 13, 0.9);
+    border-radius: 5px;
+}
+
+.movie_card_light_theme {
+    width: 15vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movie_card_light_theme:hover {
+    transform: scale(1.45);
+    -webkit-transition: transform 0.5s ease-in-out;
+    margin-top: 6vh;
+    z-index: +1;
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
 }
 

@@ -1,5 +1,6 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useState, Fragment} from 'react';
 import {useLocation, useNavigate} from "react-router-dom";
+import ReactPlayer from "react-player";
 
 import styles from "./MovieInfoComponent.module.css";
 import GenreBadgeComponent from "../GenreBadgeComponent/GenreBadgeComponent";
@@ -22,10 +23,9 @@ export const MovieInfoComponent: FC = () => {
 
     const navigate = useNavigate();
     const img_path: string = `${urls.poster.base}/${urls.poster.size.original}/${movie.poster_path}`;
+
     const {movieDetailed} = useAppSelector(state => state.moviesSlice);
-
-    console.log(actors)
-
+    console.log(movieDetailed)
     return (
         <div
             className={styles.movie_component}
@@ -74,15 +74,16 @@ export const MovieInfoComponent: FC = () => {
                 </div>
             </div>
 
-            <button className={styles.button_show_details}
-                    onClick={() => {
-                        dispatch(moviesActions.loadMovieDetails(movie.id.toString()))
-                        if (movieDetailed) {
-                            dispatch(moviesActions.loadMovieActors(movieDetailed.id.toString()))
-                        }
-                        setTrigger(true)
-                    }}>
-                show more details
+            <button
+                className={styles.button_show_details}
+                onClick={() => {
+                    dispatch(moviesActions.loadMovieDetails(movie.id.toString()))
+                    if (movieDetailed) {
+                        dispatch(moviesActions.loadMovieActors(movieDetailed.id.toString()))
+                    }
+                    setTrigger(true)
+                }}>
+                більше деталей
             </button>
             {trigger && <MoreMovieDetailsComponent key={movie.id}/>}
 
@@ -90,9 +91,21 @@ export const MovieInfoComponent: FC = () => {
                 {actors && <ActorsCarouselComponent actors={actors}/>}
             </div>
 
-            <div className={styles.trailer_box}>
-
-            </div>
+            {(trigger && movieDetailed?.videos.results.length)
+                ?
+                <div className={styles.trailer_box}>
+                    <div>Трейлер фільму</div>
+                    <Fragment key={`${urls.video.base.youtube}${movieDetailed.videos.results[0]?.key}`}>
+                        <ReactPlayer
+                            light
+                            url={`${urls.video.base.youtube}${movieDetailed.videos.results[0]?.key}`}
+                            width="40vw"
+                            playing
+                        />
+                    </Fragment>
+                </div>
+                :
+                ""}
         </div>
     );
 };

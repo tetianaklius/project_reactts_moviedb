@@ -1,3 +1,5 @@
+import {IVideos} from "../Video/IVideos";
+
 export interface IMovieDetailed {
     adult: false,
     backdrop_path: string,
@@ -51,6 +53,7 @@ export interface IMovieDetailed {
     tagline: string,
     title: string,
     video: boolean,
+    videos: IVideos,
     vote_average: number,
     vote_count: number
 }
