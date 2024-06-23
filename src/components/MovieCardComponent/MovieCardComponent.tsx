@@ -12,21 +12,20 @@ interface IProps {
 }
 
 export const MovieCardComponent: FC<IProps> = ({movie}) => {
-        const navigate = useNavigate();
+    const navigate = useNavigate();
 
-        return (
-            <div className={styles.movie_card} onClick={() => {
-                navigate(movie.id.toString(), {state: {movie: movie}});
-            }}>
-                <div className={styles.poster_preview}>
-                    <PosterPreviewComponent key={movie.id} path={movie.poster_path}/>
-                </div>
-                <div className={styles.title}>
-                    {movie.title}
-                </div>
-                <StarsRatingComponent movie={movie}/>
+    return (
+        <div className={styles.movie_card} onClick={() => {
+            navigate(movie.id.toString(), {state: {movie: movie}});
+        }}>
+            <div className={styles.poster_preview}>
+                <PosterPreviewComponent key={movie.id} path={movie.poster_path}/>
             </div>
-        );
-    }
-;
+            <div className={styles.title}>
+                {movie.title}
+            </div>
+            <StarsRatingComponent movie={movie}/>
+        </div>
+    );
+};
 

@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 import styles from "./MovieInfoComponent.module.css";
 import GenreBadgeComponent from "../GenreBadgeComponent/GenreBadgeComponent";
@@ -18,6 +18,8 @@ export const MovieInfoComponent: FC = () => {
     const [trigger, setTrigger] = useState<boolean>(false);
     const {useDarkTheme} = useAppSelector(state => state.genresSlice);
 
+    const navigate = useNavigate();
+    const img_path: string = `${urls.poster.base}/${urls.poster.size.original}/${movie.poster_path}`;
     return (
         <div
             className={styles.movie_component}
@@ -38,7 +40,9 @@ export const MovieInfoComponent: FC = () => {
                 <div className={styles.movie_poster}>
                     <img
                         src={`${urls.poster.base}/${urls.poster.size.original}/${movie.poster_path}`}
-                        alt="movie poster"/>
+                        alt="movie poster"
+                        onClick={() => navigate("poster", {state: {img_path: img_path}})}
+                    />
                 </div>
                 <div className={styles.movie_description}>
                     <div className={styles.title}>

@@ -5,7 +5,7 @@ import styles from "./MoreMovieDetailsComponent.module.css";
 
 const MoreMovieDetailsComponent: FC = () => {
     const {movieDetailed} = useAppSelector(state => state.moviesSlice);
-    console.log(movieDetailed?.adult)
+
     return (
         <div className={styles.more_info_box}>
             <div className={styles.text_box}>

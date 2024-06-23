@@ -1,10 +1,15 @@
 .footer_box {
     margin-top: auto;
-    height:15vh;
+    height: 15vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     background: linear-gradient(to left, #19132d, rgba(0, 0, 0, 0.93));
     color: white;
+}
+
+.footer_box img {
+    width: 30%;
+    cursor: pointer;
 }

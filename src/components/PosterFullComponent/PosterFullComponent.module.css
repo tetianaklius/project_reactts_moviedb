@@ -1,0 +1,9 @@
+.poster_frame {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.poster_frame img {
+    height: 100%;
+}
