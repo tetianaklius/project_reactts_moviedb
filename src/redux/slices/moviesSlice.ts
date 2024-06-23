@@ -6,6 +6,7 @@ import {ISearchParams} from "../../models/Search/SearchParams";
 import {IMoviesPaginated} from "../../models/Movies/IMoviesPaginated";
 import {IMovie} from "../../models/Movies/IMovie";
 import {IMovieDetailed} from "../../models/Movies/IMovieDetailed";
+import {IMovieActors} from "../../models/Actors/IMovieActors";
 
 export type moviesSliceType = {
     moviesPag: IMoviesPaginated | null,
@@ -19,6 +20,7 @@ export type moviesSliceType = {
         min: string
     },
     query: string | null
+    actors: IMovieActors | null
 }
 
 
@@ -33,7 +35,8 @@ const moviesInitState: moviesSliceType = {
         max: "",
         min: ""
     },
-    query: null
+    query: null,
+    actors: null
 }
 
 const loadMovies = createAsyncThunk(
@@ -60,6 +63,19 @@ const loadMovieDetails = createAsyncThunk(
             return thunkAPI.rejectWithValue(error.response?.data);
         }
     });
+
+const loadMovieActors = createAsyncThunk(
+    "moviesSlice/loadMovieActors",
+    async (id: string, thunkAPI) => {
+        try {
+            const movieActors = await moviesService.getActorsByMovieId(id);
+            return thunkAPI.fulfillWithValue(movieActors);
+        } catch (e) {
+            const error = e as AxiosError;
+            return thunkAPI.rejectWithValue(error.response?.data);
+        }
+    });
+
 
 export const moviesSlice = createSlice({
         name: "moviesSlice",
@@ -89,6 +105,12 @@ export const moviesSlice = createSlice({
                 .addCase(loadMovieDetails.rejected, (state, action) => {
                     ///
                 })
+                .addCase(loadMovieActors.fulfilled, (state, action: PayloadAction<IMovieActors>) => {
+                    state.actors = action.payload;
+                })
+                .addCase(loadMovieActors.rejected, (state, action) => {
+                    ///
+                })
 
     }
 )
@@ -96,5 +118,6 @@ export const moviesSlice = createSlice({
 export const moviesActions = {
     ...moviesSlice.actions,
     loadMovies,
-    loadMovieDetails
+    loadMovieDetails,
+    loadMovieActors
 }

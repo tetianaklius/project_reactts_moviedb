@@ -15,7 +15,10 @@ export const urls = {
             size_300: "w300",
         },
     },
-    images: (movie_id: number): string => `${baseUrl}/movie/${movie_id}/images}`,
+    movieImages: (movie_id: number): string => `${baseUrl}/movie/${movie_id}/images}`,
+    actors: {
+        byMovieId: (movie_id: number): string => `${baseUrl}/movie/${movie_id}/credits}`
+    },
     genres: {
         base: "/genre/movie/list"
     }

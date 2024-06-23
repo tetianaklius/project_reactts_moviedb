@@ -9,6 +9,7 @@ import {moviesActions} from "../../redux/slices/moviesSlice";
 import MoreMovieDetailsComponent from "../MoreMovieDetailsComponent/MoreMovieDetailsComponent";
 import {urls} from "../../constants/urls";
 import {StarsRatingComponent} from "../StarsRatingComponent/StarsRatingComponent";
+import ActorsCarouselComponent from "../ActorsCarouselComponent/ActorsCarouselComponent";
 
 export const MovieInfoComponent: FC = () => {
     const location = useLocation();
@@ -17,9 +18,14 @@ export const MovieInfoComponent: FC = () => {
     const dispatch = useAppDispatch();
     const [trigger, setTrigger] = useState<boolean>(false);
     const {useDarkTheme} = useAppSelector(state => state.genresSlice);
+    const {actors} = useAppSelector(state => state.moviesSlice);
 
     const navigate = useNavigate();
     const img_path: string = `${urls.poster.base}/${urls.poster.size.original}/${movie.poster_path}`;
+    const {movieDetailed} = useAppSelector(state => state.moviesSlice);
+
+    console.log(actors)
+
     return (
         <div
             className={styles.movie_component}
@@ -71,13 +77,18 @@ export const MovieInfoComponent: FC = () => {
             <button className={styles.button_show_details}
                     onClick={() => {
                         dispatch(moviesActions.loadMovieDetails(movie.id.toString()))
+                        if (movieDetailed) {
+                            dispatch(moviesActions.loadMovieActors(movieDetailed.id.toString()))
+                        }
                         setTrigger(true)
                     }}>
                 show more details
             </button>
             {trigger && <MoreMovieDetailsComponent key={movie.id}/>}
 
-            <div className={styles.actors_box}></div>
+            <div className={styles.actors_box}>
+                {actors && <ActorsCarouselComponent actors={actors}/>}
+            </div>
 
             <div className={styles.trailer_box}>
 
