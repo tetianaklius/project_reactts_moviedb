@@ -19,7 +19,6 @@ export const moviesService = {
     },
     getActorsByMovieId: async (id: string): Promise<IMovieActors> => {
         const response = await axiosInstance.get<IMovieActors>(urls.actors.byMovieId(+id), {params: {language: "uk-UA"}});
-        console.log(response.data)
         return response.data;
     }
 }

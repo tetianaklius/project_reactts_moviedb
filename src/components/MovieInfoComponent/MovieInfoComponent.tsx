@@ -19,13 +19,11 @@ export const MovieInfoComponent: FC = () => {
     const dispatch = useAppDispatch();
     const [trigger, setTrigger] = useState<boolean>(false);
     const {useDarkTheme} = useAppSelector(state => state.genresSlice);
-    const {actors} = useAppSelector(state => state.moviesSlice);
+    const {movieDetailed, actors} = useAppSelector(state => state.moviesSlice);
 
     const navigate = useNavigate();
     const img_path: string = `${urls.poster.base}/${urls.poster.size.original}/${movie.poster_path}`;
 
-    const {movieDetailed} = useAppSelector(state => state.moviesSlice);
-    console.log(movieDetailed)
     return (
         <div
             className={styles.movie_component}
@@ -42,6 +40,7 @@ export const MovieInfoComponent: FC = () => {
                     backgroundSize: "cover",
                 }
             }>
+
             <div className={styles.movie_box}>
                 <div className={styles.movie_poster}>
                     <img
@@ -78,18 +77,15 @@ export const MovieInfoComponent: FC = () => {
                 className={styles.button_show_details}
                 onClick={() => {
                     dispatch(moviesActions.loadMovieDetails(movie.id.toString()))
-                    if (movieDetailed) {
-                        dispatch(moviesActions.loadMovieActors(movieDetailed.id.toString()))
-                    }
-                    setTrigger(true)
+                    dispatch(moviesActions.loadMovieActors(movie.id.toString()))
+                    setTrigger(true);
                 }}>
                 більше деталей
             </button>
+
             {trigger && <MoreMovieDetailsComponent key={movie.id}/>}
 
-            <div className={styles.actors_box}>
-                {actors && <ActorsCarouselComponent actors={actors}/>}
-            </div>
+            {(actors && trigger) && <ActorsCarouselComponent actors={actors.cast}/>}
 
             {(trigger && movieDetailed?.videos.results.length)
                 ?

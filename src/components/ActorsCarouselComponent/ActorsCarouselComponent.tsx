@@ -1,16 +1,23 @@
 import React, {FC} from 'react';
-import {IMovieActors} from "../../models/Actors/IMovieActors";
+
+import ActorBoxComponent from "../ActorBoxComponent/ActorBoxComponent";
+import {IMovieActor} from "../../models/Actors/IMovieActor";
+import styles from "./ActorsCarouselComponent.module.css";
 
 interface IProps {
-    actors: IMovieActors
+    actors: IMovieActor[]
 }
 
 const ActorsCarouselComponent: FC<IProps> = ({actors}) => {
 
+    const actorsToShow = actors.filter(actor => actor.profile_path?.length).slice(0, 10);
+
     return (
         <div>
-            {/*{actors?.cast.map(<ActorBoxComponent actor={actor}/>)}*/}
-            {/*// чи тут на місці каруселька?*/}
+            <h4>Акторський склад</h4>
+            <div className={styles.actors_carousel}>
+                {actorsToShow?.map(actor => <ActorBoxComponent actor={actor}/>)}
+            </div>
         </div>
     );
 };

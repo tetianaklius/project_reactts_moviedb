@@ -1,0 +1,5 @@
+.actors_carousel {
+    height: 40vh;
+    display: flex;
+    flex-direction: row;
+}
