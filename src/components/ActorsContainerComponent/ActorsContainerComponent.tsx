@@ -2,13 +2,13 @@ import React, {FC} from 'react';
 
 import ActorBoxComponent from "../ActorBoxComponent/ActorBoxComponent";
 import {IMovieActor} from "../../models/Actors/IMovieActor";
-import styles from "./ActorsCarouselComponent.module.css";
+import styles from "./ActorsContainerComponent.module.css";
 
 interface IProps {
     actors: IMovieActor[]
 }
 
-const ActorsCarouselComponent: FC<IProps> = ({actors}) => {
+const ActorsContainerComponent: FC<IProps> = ({actors}) => {
 
     const actorsToShow = actors.filter(actor => actor.profile_path?.length).slice(0, 10);
 
@@ -16,10 +16,10 @@ const ActorsCarouselComponent: FC<IProps> = ({actors}) => {
         <div>
             <h4>Акторський склад</h4>
             <div className={styles.actors_carousel}>
-                {actorsToShow?.map(actor => <ActorBoxComponent actor={actor}/>)}
+                {actorsToShow?.map(actor => <ActorBoxComponent actor={actor} key={actor.id}/>)}
             </div>
         </div>
     );
 };
 
-export default ActorsCarouselComponent;
+export default ActorsContainerComponent;

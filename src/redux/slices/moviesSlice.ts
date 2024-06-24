@@ -69,11 +69,9 @@ const loadMovieActors = createAsyncThunk(
     async (id: string, thunkAPI) => {
         try {
             const movieActors = await moviesService.getActorsByMovieId(id);
-            console.log("slice loadMovieActors", movieActors)
             return thunkAPI.fulfillWithValue(movieActors);
         } catch (e) {
             const error = e as AxiosError;
-
             return thunkAPI.rejectWithValue(error.response?.data);
         }
     });

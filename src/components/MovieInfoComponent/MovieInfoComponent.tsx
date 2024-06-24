@@ -1,4 +1,4 @@
-import React, {FC, useState, Fragment} from 'react';
+import React, {FC, Fragment, useState} from 'react';
 import {useLocation, useNavigate} from "react-router-dom";
 import ReactPlayer from "react-player";
 
@@ -10,7 +10,7 @@ import {moviesActions} from "../../redux/slices/moviesSlice";
 import MoreMovieDetailsComponent from "../MoreMovieDetailsComponent/MoreMovieDetailsComponent";
 import {urls} from "../../constants/urls";
 import {StarsRatingComponent} from "../StarsRatingComponent/StarsRatingComponent";
-import ActorsCarouselComponent from "../ActorsCarouselComponent/ActorsCarouselComponent";
+import ActorsContainerComponent from "../ActorsContainerComponent/ActorsContainerComponent";
 
 export const MovieInfoComponent: FC = () => {
     const location = useLocation();
@@ -18,6 +18,7 @@ export const MovieInfoComponent: FC = () => {
 
     const dispatch = useAppDispatch();
     const [trigger, setTrigger] = useState<boolean>(false);
+    // const [triggerBadge, setTriggerBadge] = useState<boolean>(false);
     const {useDarkTheme} = useAppSelector(state => state.genresSlice);
     const {movieDetailed, actors} = useAppSelector(state => state.moviesSlice);
 
@@ -64,9 +65,13 @@ export const MovieInfoComponent: FC = () => {
                         <StarsRatingComponent key={movie.id} movie={movie}/>
                         <span className={styles.vote_count}>(голосів: {movie.vote_count})</span>
                     </div>
-                    <div className={styles.badges_box}>
-                        <GenreBadgeComponent key={movie.id}/>
-                    </div>
+                    {/*{trigger &&*/}
+                        <div className={styles.badges_box}>
+                            <GenreBadgeComponent key={movie.id} movie={movieDetailed}
+                                                 // setTriggerBadge={setTriggerBadge}
+                            />
+                        </div>
+                {/*}*/}
                     <div className={styles.overview}>
                         {movie.overview}
                     </div>
@@ -85,7 +90,7 @@ export const MovieInfoComponent: FC = () => {
 
             {trigger && <MoreMovieDetailsComponent key={movie.id}/>}
 
-            {(actors && trigger) && <ActorsCarouselComponent actors={actors.cast}/>}
+            {(actors && trigger) && <ActorsContainerComponent actors={actors.cast}/>}
 
             {(trigger && movieDetailed?.videos.results.length)
                 ?
