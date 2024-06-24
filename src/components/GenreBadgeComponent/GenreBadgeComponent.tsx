@@ -11,7 +11,7 @@ import styles from "./GenreBadgeComponent.module.css";
 
 interface IProps {
     movie: IMovieDetailed | null,
-    // setTriggerBadge: Dispatch<SetStateAction<boolean>>
+    // triggerBadgeFunc: (arg: boolean) => void;
 }
 
 
@@ -30,7 +30,8 @@ const GenreBadgeComponent: FC<IProps> = ({movie}) => {
                         })
                         if (prevState[0].name === "жанри відсутні" && prevState.length > 1) {
                             prevState.shift();
-                            setTrigger(true);
+                            // triggerBadgeFunc(true);
+                            // setTrigger(true);
                         }
                         return prevState;
                     }
@@ -68,7 +69,7 @@ const GenreBadgeComponent: FC<IProps> = ({movie}) => {
 
     useEffect(() => {
             getCountSelectedGenres();
-        // setTriggerBadge(true);
+        // triggerBadgeFunc(true);
         }, []
     );
 
@@ -94,62 +95,59 @@ const GenreBadgeComponent: FC<IProps> = ({movie}) => {
 export default GenreBadgeComponent;
 
 
+// const {genres: allGenresStore} = useAppSelector(state => state.genresSlice);
+// const [allGenresState, setAllGenresArr] = useState<IGenre[]>([{id: 0, name: "default", genreMoviesCount: 1}]);
 
+// const getGenres = (): void => {
+//         genresService.getAll().then(genres => {
+//                 genres.genres.map(genre => setAllGenresArr((prevState: IGenre[]) => {
+//                         prevState.push({
+//                             id: genre.id,
+//                             name: genre.name,
+//                             genreMoviesCount: null
+//                         })
+//                         return prevState;
+//                     }
+//                 ))
+//             }
+//         )
+//     }
+// ;
+// let allGenresArr: IGenre[];
+//
+// if (allGenresStore === null) {
+//     getGenres();
+//     allGenresArr = allGenresState;
+// } else {
+//     allGenresArr = allGenresStore.genres;
+// }
 
-
-    // const {genres: allGenresStore} = useAppSelector(state => state.genresSlice);
-    // const [allGenresState, setAllGenresArr] = useState<IGenre[]>([{id: 0, name: "default", genreMoviesCount: 1}]);
-
-    // const getGenres = (): void => {
-    //         genresService.getAll().then(genres => {
-    //                 genres.genres.map(genre => setAllGenresArr((prevState: IGenre[]) => {
-    //                         prevState.push({
-    //                             id: genre.id,
-    //                             name: genre.name,
-    //                             genreMoviesCount: null
-    //                         })
-    //                         return prevState;
-    //                     }
-    //                 ))
-    //             }
-    //         )
-    //     }
-    // ;
-    // let allGenresArr: IGenre[];
-    //
-    // if (allGenresStore === null) {
-    //     getGenres();
-    //     allGenresArr = allGenresState;
-    // } else {
-    //     allGenresArr = allGenresStore.genres;
-    // }
-
-    // const getCountSelectedGenres = () => {
-    //     const params: ISearchParams = {
-    //         page: "1",
-    //         with_genres: null,
-    //         language: "uk-UA",
-    //         sort_by: 'vote_count.desc'
-    //     }
-    //     let ResGenreArray: IGenre[];
-    //
-    //     movie &&
-    //     movie.genres.map(
-    //         movieGenre => {
-    //             params.with_genres = movieGenre.id.toString();
-    //
-    //             moviesService.getAll(params).then(movies => {
-    //                 allGenresArr.map(someGenre => {
-    //                     if (someGenre.id === movieGenre.id) {
-    //                         // @ts-ignore
-    //                         someGenre.genreMoviesCount = movies.total_results;
-    //                         // ResGenreArray.push(someGenre);
-    //                     }
-    //                     // setAllGenresArr(ResGenreArray);
-    //                 })
-    //             })
-    //             return ResGenreArray;
-    //         }
-    //     );
-    // }
-    // getCountSelectedGenres();
+// const getCountSelectedGenres = () => {
+//     const params: ISearchParams = {
+//         page: "1",
+//         with_genres: null,
+//         language: "uk-UA",
+//         sort_by: 'vote_count.desc'
+//     }
+//     let ResGenreArray: IGenre[];
+//
+//     movie &&
+//     movie.genres.map(
+//         movieGenre => {
+//             params.with_genres = movieGenre.id.toString();
+//
+//             moviesService.getAll(params).then(movies => {
+//                 allGenresArr.map(someGenre => {
+//                     if (someGenre.id === movieGenre.id) {
+//                         // @ts-ignore
+//                         someGenre.genreMoviesCount = movies.total_results;
+//                         // ResGenreArray.push(someGenre);
+//                     }
+//                     // setAllGenresArr(ResGenreArray);
+//                 })
+//             })
+//             return ResGenreArray;
+//         }
+//     );
+// }
+// getCountSelectedGenres();

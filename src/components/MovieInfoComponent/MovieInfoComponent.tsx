@@ -12,18 +12,25 @@ import {urls} from "../../constants/urls";
 import {StarsRatingComponent} from "../StarsRatingComponent/StarsRatingComponent";
 import ActorsContainerComponent from "../ActorsContainerComponent/ActorsContainerComponent";
 
+// interface IProps{                //2
+//     triggerBadgeFunc: (arg: boolean) => void;
+// }
+
 export const MovieInfoComponent: FC = () => {
     const location = useLocation();
     const movie: IMovie = location.state.movie;
 
     const dispatch = useAppDispatch();
     const [trigger, setTrigger] = useState<boolean>(false);
-    // const [triggerBadge, setTriggerBadge] = useState<boolean>(false);
     const {useDarkTheme} = useAppSelector(state => state.genresSlice);
     const {movieDetailed, actors} = useAppSelector(state => state.moviesSlice);
 
     const navigate = useNavigate();
     const img_path: string = `${urls.poster.base}/${urls.poster.size.original}/${movie.poster_path}`;
+
+    // const triggerBadgeFunc = (arg: boolean) => {
+    //     setTriggerBadge(arg);
+    // }
 
     return (
         <div
@@ -66,12 +73,12 @@ export const MovieInfoComponent: FC = () => {
                         <span className={styles.vote_count}>(голосів: {movie.vote_count})</span>
                     </div>
                     {/*{trigger &&*/}
-                        <div className={styles.badges_box}>
-                            <GenreBadgeComponent key={movie.id} movie={movieDetailed}
-                                                 // setTriggerBadge={setTriggerBadge}
-                            />
-                        </div>
-                {/*}*/}
+                    <div className={styles.badges_box}>
+                        <GenreBadgeComponent key={movie.id} movie={movieDetailed}
+                            // triggerBadgeFunc={triggerBadgeFunc}
+                        />
+                    </div>
+                    {/*}*/}
                     <div className={styles.overview}>
                         {movie.overview}
                     </div>
@@ -84,6 +91,7 @@ export const MovieInfoComponent: FC = () => {
                     dispatch(moviesActions.loadMovieDetails(movie.id.toString()))
                     dispatch(moviesActions.loadMovieActors(movie.id.toString()))
                     setTrigger(true);
+                    // setTriggerBadge(true);
                 }}>
                 більше деталей
             </button>
