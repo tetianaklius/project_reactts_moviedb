@@ -9,7 +9,7 @@
 }
 
 .movie_card_dark_theme:hover {
-    transform: scale(1.45);
+    transform: scale(1.1);
     -webkit-transition: transform 0.5s ease-in-out;
     margin-top: 6vh;
     z-index: +1;
@@ -28,7 +28,7 @@
 }
 
 .movie_card_light_theme:hover {
-    transform: scale(1.45);
+    transform: scale(1.1);
     -webkit-transition: transform 0.5s ease-in-out;
     margin-top: 6vh;
     z-index: +1;

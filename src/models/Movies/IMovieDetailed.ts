@@ -1,4 +1,5 @@
 import {IVideos} from "../Video/IVideos";
+import {IGenre} from "../Genres/IGenre";
 
 export interface IMovieDetailed {
     adult: false,
@@ -10,12 +11,7 @@ export interface IMovieDetailed {
         backdrop_path: string
     },
     budget: number,
-    genres: [
-        {
-            id: number,
-            name: string
-        },
-    ],
+    genres: IGenre[],
     homepage: string,
     id: number,
     imdb_id: string,

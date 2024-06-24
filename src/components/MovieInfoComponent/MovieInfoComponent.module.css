@@ -27,7 +27,7 @@
     transform: scale(1.45);
     margin-top: 6vh;
     z-index: +1;
-    -webkit-transition: transform 0.5s ease-in-out;
+    -webkit-transition: transform 1s ease-in-out;
     cursor: zoom-in;
 }
 
@@ -57,6 +57,7 @@
 
 .button_show_details {
     border: none;
+    border-radius: 3px;
     background: #1f1738;
     height: 4vh;
     min-height: 20px;

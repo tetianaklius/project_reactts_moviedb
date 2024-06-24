@@ -4,16 +4,10 @@ import {MovieInfoComponent} from "../../components/MovieInfoComponent/MovieInfoC
 import styles from "./MoviePage.module.css";
 
 const MoviePage: FC = () => {
-    // const [triggerBadge, setTriggerBadge] = useState<boolean>(false);
-    //2
-    // const triggerBadgeFunc = (arg: boolean) => {
-    //     setTriggerBadge(arg);
-    // }
 
     return (
         <div className={styles.movie_page}>
             <MovieInfoComponent
-                // triggerBadgeFunc={triggerBadgeFunc}
             />
         </div>
     );

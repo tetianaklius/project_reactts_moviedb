@@ -3,7 +3,6 @@ import {useLocation, useNavigate} from "react-router-dom";
 import ReactPlayer from "react-player";
 
 import styles from "./MovieInfoComponent.module.css";
-import GenreBadgeComponent from "../GenreBadgeComponent/GenreBadgeComponent";
 import {IMovie} from "../../models/Movies/IMovie";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {moviesActions} from "../../redux/slices/moviesSlice";
@@ -11,10 +10,8 @@ import MoreMovieDetailsComponent from "../MoreMovieDetailsComponent/MoreMovieDet
 import {urls} from "../../constants/urls";
 import {StarsRatingComponent} from "../StarsRatingComponent/StarsRatingComponent";
 import ActorsContainerComponent from "../ActorsContainerComponent/ActorsContainerComponent";
+import GenreBadgeComponent from "../GenreBadgeComponent/GenreBadgeComponent";
 
-// interface IProps{                //2
-//     triggerBadgeFunc: (arg: boolean) => void;
-// }
 
 export const MovieInfoComponent: FC = () => {
     const location = useLocation();
@@ -28,9 +25,6 @@ export const MovieInfoComponent: FC = () => {
     const navigate = useNavigate();
     const img_path: string = `${urls.poster.base}/${urls.poster.size.original}/${movie.poster_path}`;
 
-    // const triggerBadgeFunc = (arg: boolean) => {
-    //     setTriggerBadge(arg);
-    // }
 
     return (
         <div
@@ -72,13 +66,11 @@ export const MovieInfoComponent: FC = () => {
                         <StarsRatingComponent key={movie.id} movie={movie}/>
                         <span className={styles.vote_count}>(голосів: {movie.vote_count})</span>
                     </div>
-                    {/*{trigger &&*/}
-                    <div className={styles.badges_box}>
-                        <GenreBadgeComponent key={movie.id} movie={movieDetailed}
-                            // triggerBadgeFunc={triggerBadgeFunc}
-                        />
-                    </div>
-                    {/*}*/}
+
+                    {trigger && <div className={styles.badges_box}>
+                        <GenreBadgeComponent key={movie.id} movie={movieDetailed}/>
+                    </div>}
+
                     <div className={styles.overview}>
                         {movie.overview}
                     </div>
@@ -91,7 +83,6 @@ export const MovieInfoComponent: FC = () => {
                     dispatch(moviesActions.loadMovieDetails(movie.id.toString()))
                     dispatch(moviesActions.loadMovieActors(movie.id.toString()))
                     setTrigger(true);
-                    // setTriggerBadge(true);
                 }}>
                 більше деталей
             </button>
