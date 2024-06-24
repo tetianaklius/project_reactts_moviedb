@@ -51,7 +51,6 @@ const HeaderComponent: FC = () => {
             <div
                 onClick={() => BackButton()}
                 className={styles.back_button}
-                style={useDarkTheme ? {color: "white"} : {color: "black"}}
             >Назад&laquo;&laquo;&laquo;
             </div>
             <div
