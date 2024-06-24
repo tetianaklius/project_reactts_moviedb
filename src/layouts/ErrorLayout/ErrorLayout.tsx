@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {FC} from 'react';
 
 import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
 import styles from "./ErrorLayout.module.css";
 import {useAppSelector} from "../../redux/store";
 import ErrorMessageComponent from "../../components/ErrorMessageComponent/ErrorMessageComponent";
 
-const ErrorLayout = () => {
+const ErrorLayout: FC = () => {
     const {useDarkTheme} = useAppSelector(state => state.genresSlice);
 
     return (

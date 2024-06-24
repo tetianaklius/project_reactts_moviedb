@@ -21,7 +21,7 @@ const PaginationComponent: FC = () => {
         next = (page < moviesPag.total_pages) ? page + 1 : null;
     }
 
-    const changePage = (action: string) => {
+    const changePage = (action: string): void => {
         switch (action) {
             case "next":
                 dispatch(moviesActions.changePage(page + 1));

@@ -7,7 +7,6 @@ import PosterPreviewComponent from "../PosterPreviewComponent/PosterPreviewCompo
 import {StarsRatingComponent} from "../StarsRatingComponent/StarsRatingComponent";
 import {useAppSelector} from "../../redux/store";
 
-
 interface IProps {
     movie: IMovie;
 }

@@ -5,12 +5,13 @@ import {useAppDispatch} from "../../redux/store";
 import {moviesActions} from "../../redux/slices/moviesSlice";
 import styles from "./SearchMovieComponent.module.css";
 import {searchReqValidator} from "../../validators/searchReqValidator";
+import {FC} from "react";
 
 interface IProps {
     searchStr: string | null
 }
 
-export const SearchMovieComponent = () => {
+export const SearchMovieComponent: FC = () => {
     const {register, handleSubmit, formState: {errors}} = useForm<IProps>({
         mode: "all",
         resolver: joiResolver(searchReqValidator)

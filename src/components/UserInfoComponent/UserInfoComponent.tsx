@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 
 import styles from "./UserInfoComponent.module.css";
 import user_icon from "../../files/icons8-user-32.png";
 
-const UserInfoComponent = () => {
+const UserInfoComponent: FC = () => {
+
     return (
         <div className={styles.user_info}>
             <div className={styles.user_icon}>

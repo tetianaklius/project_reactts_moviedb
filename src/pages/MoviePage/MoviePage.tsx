@@ -7,8 +7,7 @@ const MoviePage: FC = () => {
 
     return (
         <div className={styles.movie_page}>
-            <MovieInfoComponent
-            />
+            <MovieInfoComponent/>
         </div>
     );
 };

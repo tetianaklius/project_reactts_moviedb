@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 
 import styles from "./FooterComponent.module.css";
 import logo from "../../files/blue_long_logo_2.svg";
@@ -6,7 +6,7 @@ import {moviesActions} from "../../redux/slices/moviesSlice";
 import {useAppDispatch} from "../../redux/store";
 import {useNavigate} from "react-router-dom";
 
-const FooterComponent = () => {
+const FooterComponent: FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 

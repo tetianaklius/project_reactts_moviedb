@@ -26,7 +26,7 @@ const GenreBadgeComponent: FC<IProps> = ({movie}) => {
                         })
                         if (prevState[0].name === "жанри відсутні" && prevState.length > 1) {
                             prevState.shift();
-                            setTrigger(true);
+                            setTrigger(prev => !prev);
                         }
                         return prevState;
                     }
@@ -35,7 +35,7 @@ const GenreBadgeComponent: FC<IProps> = ({movie}) => {
         )
     }, []);
 
-    const getCountSelectedGenres = () => {
+    const getCountSelectedGenres = (): void => {
         const params: ISearchParams = {
             page: "1",
             with_genres: null,

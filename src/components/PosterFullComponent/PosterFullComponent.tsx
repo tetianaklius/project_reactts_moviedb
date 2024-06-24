@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 
 import {useLocation} from "react-router-dom";
 import styles from "./PosterFullComponent.module.css";
 
-const PosterFullComponent = () => {
+const PosterFullComponent: FC = () => {
     const location = useLocation();
     const img_path: string = location.state.img_path;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Outlet} from "react-router-dom";
 
 import HeaderComponent from "../components/HeaderComponent/HeaderComponent";
@@ -7,7 +7,7 @@ import styles from "./MainLayout.module.css";
 import {colorThemes} from "../constants/colorTheme";
 import {useAppSelector} from "../redux/store";
 
-const MainLayout = () => {
+const MainLayout: FC = () => {
     const {useDarkTheme} = useAppSelector(state => state.genresSlice);
 
     return (

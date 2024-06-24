@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 
 import styles from "../../layouts/ErrorLayout/ErrorLayout.module.css";
 
-const ErrorMessageComponent = () => {
+const ErrorMessageComponent: FC = () => {
 
     return (
         <>
             <h2 className={styles.error_message}>От халепа! Щось пішло не так. Перевірте, будь ласка, адресу (URL)
-                сторінки.</h2>
+                сторінки або скористайтесь навігаційним меню вище.</h2>
         </>
     );
 };

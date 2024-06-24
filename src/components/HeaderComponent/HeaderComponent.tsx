@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import {useNavigate} from "react-router-dom";
 import Switch from "@mui/material/Switch";
 
@@ -10,7 +10,7 @@ import {moviesActions} from "../../redux/slices/moviesSlice";
 import {colorThemes} from "../../constants/colorTheme";
 import logo from "../../files/blue_long_logo.svg";
 
-const HeaderComponent = () => {
+const HeaderComponent: FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const {useDarkTheme} = useAppSelector(state => state.genresSlice);
